@@ -18,7 +18,7 @@ public class Gun1 : MonoBehaviour
     private Vector3 end;
     private LineRenderer laserLine;
     private Camera fpsCam;
-    private WaitForSeconds shotDuration = new WaitForSeconds(.06f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(.08f);
     private WaitForSeconds shotHintDuration = new WaitForSeconds(1.1f);
     private float nextFire;
     //private AudioSource gunAudio;
@@ -44,10 +44,10 @@ public class Gun1 : MonoBehaviour
             end = other.point;
 
             // shoot bullet under shoot rate
-            if (Input.GetButtonDown("Fire1") && other.transform.tag == "Enemy" && Time.time > nextFire)
+            if (Input.GetButton("Fire1") && other.transform.tag == "Enemy" && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
-
+                // shoot bullet if within shoot range
                 if (distance <= weaponRange)
                 {
                     StartCoroutine(ShotEffect());
@@ -55,6 +55,7 @@ public class Gun1 : MonoBehaviour
                     Instantiate(gooBall, other.point + new Vector3(0, 0.5f, -0.5f), Quaternion.identity);
                     //print(other.transform.name);
                 }
+                // show hint if out of shoot range
                 if (distance > weaponRange)
                 {
                     StartCoroutine(ShotHintEffect());

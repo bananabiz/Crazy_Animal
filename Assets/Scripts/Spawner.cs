@@ -37,10 +37,10 @@ public class Spawner : MonoBehaviour
 
         spawnLine.enabled = true;
         spawnLine.SetPosition(0, spawnLineStart.position);
-        spawnLine.SetPosition(1, transform.position);
+        spawnLine.SetPosition(1, transform.position + new Vector3(0, -2.5f, 0));
         yield return new WaitForSeconds(1);
 
-        Instantiate(enemyPrefab, transform.position + new Vector3(0, -2.5f, 0), Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         spawnLine.enabled = false;
         Debug.Log("go");
 
