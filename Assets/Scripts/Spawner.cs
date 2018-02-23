@@ -8,12 +8,15 @@ public class Spawner : MonoBehaviour
     public GameObject enemyPrefab;
     public int sec = 15;
     public bool isSpawned = false;
+    public Transform spawnLineStart;
 
-	// Use this for initialization
-	void Start ()
+    private LineRenderer spawnLine;
+
+    // Use this for initialization
+    void Start ()
     {
-		
-	}
+        spawnLine = GetComponent<LineRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -31,8 +34,16 @@ public class Spawner : MonoBehaviour
     IEnumerator Wait(int seconds)
     {
         isSpawned = true;
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
+        spawnLine.enabled = true;
+        spawnLine.SetPosition(0, spawnLineStart.position);
+        spawnLine.SetPosition(1, transform.position);
+        yield return new WaitForSeconds(1);
+
+        Instantiate(enemyPrefab, transform.position + new Vector3(0, -2.5f, 0), Quaternion.identity);
+        spawnLine.enabled = false;
         Debug.Log("go");
+
         yield return new WaitForSeconds(seconds);
         isSpawned = false;
     }

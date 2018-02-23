@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
             losePanel.SetActive(true);
             Time.timeScale = 0;
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetButtonDown("Fire2"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
             }
