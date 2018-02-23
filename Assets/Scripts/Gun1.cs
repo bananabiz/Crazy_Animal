@@ -13,6 +13,7 @@ public class Gun1 : MonoBehaviour
     public float weaponRange = 80f;
     //public float buildRange = 30f;
     public GameObject shotHint;
+    public Image weaponRechargeBar;
 
     private Vector3 start;
     private Vector3 end;
@@ -48,12 +49,15 @@ public class Gun1 : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
                 // shoot bullet if within shoot range
+
                 if (distance <= weaponRange)
                 {
                     StartCoroutine(ShotEffect());
                     
                     Instantiate(gooBall, other.point + new Vector3(0, 0.5f, -0.5f), Quaternion.identity);
                     //print(other.transform.name);
+
+                    weaponRechargeBar.fillAmount = 0;
                 }
                 // show hint if out of shoot range
                 if (distance > weaponRange)
@@ -68,7 +72,12 @@ public class Gun1 : MonoBehaviour
                 Instantiate(platform, transform.position + (transform.forward * 3), Quaternion.identity);
                 
             }
-            
+
+            weaponRechargeBar.fillAmount += Time.deltaTime / fireRate;
+            if (weaponRechargeBar.fillAmount >= 1)
+            {
+                weaponRechargeBar.fillAmount = 1;
+            }
         }
     }
     

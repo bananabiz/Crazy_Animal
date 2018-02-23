@@ -47,7 +47,10 @@ public class PlayerHealth : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
             }
         }
-        
+        if (currentHealth <= 40)
+        {
+            hpBar.color = new Color(255, 0, 0);
+        }
 	}
 
     void OnCollisionEnter(Collision enemy)
