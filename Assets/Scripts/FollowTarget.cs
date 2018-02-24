@@ -19,6 +19,7 @@ public class FollowTarget : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         agentSpeed = agent.speed;
     }
@@ -26,7 +27,6 @@ public class FollowTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //GameObject target = GameObject.FindGameObjectWithTag("Player");
         // update player's position
         Vector3 targetPosition = target.transform.position;
         distance = Vector3.Distance(transform.position, targetPosition);

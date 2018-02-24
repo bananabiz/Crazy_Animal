@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         {
             //attach bullet on enemy
             transform.parent = other.gameObject.transform;
-            Destroy(this.gameObject, destroyDelay - 0.5f);
+            Destroy(this.gameObject, destroyDelay - 0.2f);
             //instantiate portal to capture enemy
             GameObject ringClone = Instantiate(ring, other.transform.position, Quaternion.identity);
             Destroy(ringClone, destroyDelay);
