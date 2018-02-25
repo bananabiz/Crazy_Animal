@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
         Vector3 targetPosition = target.transform.position;
         float distance = Vector3.Distance(transform.position, targetPosition);
 
+        //spawn enemy once player's position is within range
         if (distance < dis && isSpawned == false)
         {
             StartCoroutine(Wait(sec));
@@ -34,16 +35,16 @@ public class Spawner : MonoBehaviour
     IEnumerator Wait(int seconds)
     {
         isSpawned = true;
-
+        //shoot laser to the ground
         spawnLine.enabled = true;
         spawnLine.SetPosition(0, spawnLineStart.position);
         spawnLine.SetPosition(1, transform.position + new Vector3(0, -2.5f, 0));
         yield return new WaitForSeconds(1);
-
+        //spawn enemy in 1 second
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         spawnLine.enabled = false;
         Debug.Log("go");
-
+        //delay spawn time
         yield return new WaitForSeconds(seconds);
         isSpawned = false;
     }
