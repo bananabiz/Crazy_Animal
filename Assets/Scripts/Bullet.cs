@@ -12,7 +12,8 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag == ("Enemy"))
         {
             //attach bullet on enemy
-            transform.parent = other.gameObject.transform;
+            //transform.parent = other.gameObject.transform;
+            transform.SetParent(other.transform);
             Destroy(this.gameObject, destroyDelay - 0.2f);
             //instantiate portal to capture enemy
             GameObject ringClone = Instantiate(ring, other.transform.position, Quaternion.identity);
