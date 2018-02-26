@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
             transform.SetParent(other.transform);
             Destroy(this.gameObject, destroyDelay - 0.2f);
             //instantiate portal to capture enemy
-            GameObject ringClone = Instantiate(ring, other.transform.position, Quaternion.identity);
+            GameObject ringClone = Instantiate(ring, other.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
             Destroy(ringClone, destroyDelay);
             Destroy(other.transform.parent.gameObject, destroyDelay);
             Destroy(other.gameObject, destroyDelay);
